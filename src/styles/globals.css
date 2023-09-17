@@ -1,3 +1,4 @@
+/* Common styles for all screens */
 html,
 body {
   padding: 0;
@@ -22,28 +23,38 @@ a {
   border-radius: 10px;
   height: 5px;
 }
+
+/* Sidebar styles */
 .side-navbar {
   position: fixed;
   width: 250px;
   height: 100%;
   overflow: hidden;
-  left: 0px;
+  left: 0;
   top: 45px;
   display: flex;
   flex-direction: column;
-  /* flex-grow: 1; */
-  background-color: #0b1416;
-  color: white;
+  background-color: white;
+  color: black;
   font-size: 18px;
   font-weight: 500;
   line-height: 65px;
   text-align: start;
   letter-spacing: 1px;
-  border-right: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 20px 5px 0 0px;
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 20px 5px 0 0;
   padding-bottom: 20px;
+  transition: left 0.3s ease; /* Add a smooth transition for opening/closing the sidebar */
 }
 
+/* Styles for screens with a maximum width of 768px (small screens) */
+@media (max-width: 768px) {
+  .side-navbar {
+    left: -250px; /* Hide the sidebar off-screen */
+  }
+}
+
+/* Scroll box styles */
 .scroll-box {
   overflow: auto;
   padding-right: 10px;
@@ -53,6 +64,8 @@ a {
 .scrollbox-inner {
   visibility: visible;
 }
+
+/* Navigation styles */
 nav ul {
   height: 100%;
   width: 100%;
@@ -61,7 +74,7 @@ nav ul {
 nav ul li {
   line-height: 45px;
   position: relative;
-  color: white;
+  color: black;
   text-decoration: none;
   font-size: 14px;
   padding-left: 40px;
@@ -70,27 +83,44 @@ nav ul li {
   width: 100%;
 }
 .text {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 nav ul li a {
-  /* position: relative; */
-  color: white;
+  color: black;
   text-decoration: none;
   font-size: 14px;
-  /* padding-left: 40px; */
   font-weight: 100;
   display: block;
   width: 100%;
 }
 nav ul li a:hover {
-  color: cyan;
+  color: black;
   padding-left: 10px;
-  background-color: #1e1e1e;
-  border-left: 2px solid;
-  border-left-color: cyan;
+  background-color: #fbfbfb;
+  border-left: 2px solid cyan;
 }
-
 nav ul li a i {
   padding-right: 22px;
   font-size: 16px;
+}
+
+/* Content (post screen) styles */
+.post-content {
+  margin-left: 250px; /* Adjust the margin to match the sidebar width */
+  padding: 20px; /* Add some padding to separate content from sidebar */
+}
+
+/* Responsive sidebar open/close button */
+.sidebar-toggle-button {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 999; /* Ensure the button is on top of everything */
+}
+
+/* Sidebar open class */
+.sidebar-open .side-navbar {
+  left: 0;
 }
