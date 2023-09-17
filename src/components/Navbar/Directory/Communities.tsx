@@ -40,6 +40,7 @@ const Communities: React.FC<CommunitiesProps> = ({ menuOpen }) => {
                 key={snippet.communityId}
                 displayText={`r/${snippet.communityId}`}
                 link={`/r/${snippet.communityId}`}
+                imageURL={snippet.imageURL}
                 icon={FaReddit}
                 iconColor="brand.100"
               />
