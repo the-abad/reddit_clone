@@ -11,10 +11,11 @@ interface LayoutProps {
 }
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
+  const [user, loadingUser, error] = useAuthState(auth);
   return (
     <>
       <Navbar />
-      <SideNavBar />
+      {!user && <SideNavBar />}
       {children}
     </>
   );
