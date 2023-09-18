@@ -100,6 +100,7 @@ const About: React.FC<AboutProps> = ({
         color="white"
         bg="blue.400"
         borderRadius="4px 4px 0px 0px"
+        mt={{base:0, md:10}}
       >
         <Text fontSize="10pt" fontWeight={700}>
           About Community
