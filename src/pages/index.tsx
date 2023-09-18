@@ -66,8 +66,7 @@ const Home: NextPage = () => {
             getDocs(
               query(
                 collection(firestore, "posts"),
-                where("communityId", "==", myCommunityIds[index]),
-                limit(3)
+                where("communityId", "==", myCommunityIds[index])
               )
             )
           );
@@ -91,8 +90,7 @@ const Home: NextPage = () => {
 
         const postQuery = query(
           collection(firestore, "posts"),
-          orderBy("voteStatus", "desc"),
-          limit(10)
+          orderBy("voteStatus", "desc")
         );
         const postDocs = await getDocs(postQuery);
         const posts = postDocs.docs.map((doc) => ({
@@ -123,8 +121,7 @@ const Home: NextPage = () => {
     try {
       const postQuery = query(
         collection(firestore, "posts"),
-        orderBy("voteStatus", "desc"),
-        limit(10)
+        orderBy("voteStatus", "desc")
       );
       const postDocs = await getDocs(postQuery);
       const posts = postDocs.docs.map((doc) => ({
