@@ -59,7 +59,7 @@ const Home: NextPage = () => {
         );
         // Getting 2 posts from 3 communities that user has joined
         let postPromises: Array<Promise<QuerySnapshot<DocumentData>>> = [];
-        [0, 1, 2].forEach((index) => {
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].forEach((index) => {
           if (!myCommunityIds[index]) return;
 
           postPromises.push(
