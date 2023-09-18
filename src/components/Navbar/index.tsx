@@ -22,6 +22,9 @@ const Navbar: React.FC = () => {
 
   return (
     <Flex
+      as="nav"
+      w="100%"
+      position="fixed"
       bg="white"
       height="44px"
       padding="6px 12px"
