@@ -25,6 +25,7 @@ const Navbar: React.FC = () => {
       as="nav"
       w="100%"
       position="fixed"
+      zIndex={1}
       bg="white"
       height="44px"
       padding="6px 12px"
