@@ -26,6 +26,7 @@ export type Comment = {
   postTitle: string;
   text: string;
   createdAt?: Timestamp;
+  likeCount?: number;
 };
 
 type CommentItemProps = {
@@ -42,7 +43,14 @@ const CommentItem: React.FC<CommentItemProps> = ({
   userId,
 }) => {
   // const [loading, setLoading] = useState(false);
+  const [likes, setLikeCount] = useState(comment.likeCount || 0);
+  const handleLikeCount = (count: number) => {
+    setLikeCount(likes + count);
+  };
 
+  const handleDislikeCount = (count: number) => {
+    setLikeCount(likes + count);
+  };
   // const handleDelete = useCallback(async () => {
   //   setLoading(true);
   //   try {
@@ -86,8 +94,21 @@ const CommentItem: React.FC<CommentItemProps> = ({
           fontWeight={600}
           color="gray.500"
         >
-          <Icon as={IoArrowUpCircleOutline} />
-          <Icon as={IoArrowDownCircleOutline} />
+          <Icon
+            as={IoArrowUpCircleOutline}
+            color="gray.400"
+            cursor="pointer"
+            onClick={() => handleLikeCount(1)}
+          />
+          <Text fontSize="9pt" fontWeight={600}>
+            {likes}
+          </Text>
+          <Icon
+            as={IoArrowDownCircleOutline}
+            color="gray.400"
+            cursor="pointer"
+            onClick={() => handleDislikeCount(-1)}
+          />
           {userId === comment.creatorId && (
             <>
               <Text fontSize="9pt" _hover={{ color: "blue.500" }}>
