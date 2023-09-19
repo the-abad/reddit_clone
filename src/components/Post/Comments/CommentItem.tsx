@@ -46,17 +46,33 @@ const CommentItem: React.FC<CommentItemProps> = ({
   const [likes, setLikeCount] = useState(comment.likeCount || 0);
   const [upVoteType, setUpVote] = useState('')
   const [downVoteType, setDownVote] = useState('')
-  const handleLikeCount = (count: number, type: string) => {
-    if(upVoteType == '' || upVoteType == null || upVoteType == undefined){
-    setLikeCount(likes + count);
+  const handleLikeCount = (type: string) => {
+    if(upVoteType == 'UP') {
+      setLikeCount(likes - 1);
+      setUpVote('');
+    }
+    if(upVoteType == '' && downVoteType == ''){
+      setLikeCount(likes + 1);
+      setUpVote(type);
+    }
+    if(upVoteType == '' && downVoteType == 'DOWN'){
+      setLikeCount(likes + 2);  
       setUpVote(type);
       setDownVote('');
     }
   };
 
-  const handleDislikeCount = (count: number, type: string) => {
-    if(downVoteType == '' || downVoteType == null || downVoteType == undefined){
-    setLikeCount(likes + count);
+  const handleDislikeCount = (type: string) => {
+    if(downVoteType == 'DOWN') {
+      setLikeCount(likes + 1);
+      setDownVote('');
+    }
+    if(downVoteType == '' && upVoteType == ''){
+      setLikeCount(likes - 1);
+      setDownVote(type);
+    }
+    if(downVoteType == '' && upVoteType == 'UP'){
+      setLikeCount(likes - 2);      
       setDownVote(type);
       setUpVote('');
     }
@@ -108,7 +124,7 @@ const CommentItem: React.FC<CommentItemProps> = ({
             as={IoArrowUpCircleOutline}
             color="gray.400"
             cursor="pointer"
-            onClick={() => handleLikeCount(1, "UP")}
+            onClick={() => handleLikeCount("UP")}
           />
           <Text fontSize="9pt" fontWeight={600}>
             {likes}
@@ -117,7 +133,7 @@ const CommentItem: React.FC<CommentItemProps> = ({
             as={IoArrowDownCircleOutline}
             color="gray.400"
             cursor="pointer"
-            onClick={() => handleDislikeCount(-1, "DOWN")}
+            onClick={() => handleDislikeCount("DOWN")}
           />
           {userId === comment.creatorId && (
             <>
