@@ -7,6 +7,7 @@ import { User } from "firebase/auth";
 import { collection, getDocs, limit, orderBy, query } from "firebase/firestore";
 import { Community } from "../../atoms/communitiesAtom";
 import { firestore } from "../../firebase/clientApp";
+import Link from "next/link";
 
 type SearchInputProps = {
   user: User;
