@@ -86,7 +86,9 @@ const SearchInput: React.FC<SearchInputProps> = ({ user }) => {
               {filterData.map((item, index) => (
                 <ListItem key={index} py={2} px={4} borderBottom="1px solid #ccc" display="flex" alignItems="center">
                   <img src={item.imageURL} alt="" style={{marginRight: "8px", borderRadius: "50%", width:"30px", height: "30px"}}/>
-                  <Link href={`/r/${item.id}`}>{item.id}</Link>
+                  <Link href={`/r/${item.id}`}>
+		    {item.id}
+                  </Link>
                 </ListItem>
               ))}
             </List>
