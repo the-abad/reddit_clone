@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import {
   Box,
@@ -14,11 +14,37 @@ import useDirectory from "../../../hooks/useDirectory";
 import Communities from "./Communities";
 
 const Directory: React.FC = () => {
-  const [open, setOpen] = useState(false);
-  const handleClose = () => setOpen(false);
-
   const { directoryState, toggleMenuOpen } = useDirectory();
+  const menuRef = useRef<HTMLDivElement | null>(null);
+  const [isMenuListOpen, setMenuListOpen] = useState(false);
 
+  // Function to close the menu
+  const closeMenu = () => {
+    toggleMenuOpen();
+  };
+
+  // Function to toggle the MenuList
+  const toggleMenuList = () => {
+    setMenuListOpen(!isMenuListOpen);
+  };
+  // Add an event listener to the document body to handle clicks outside of the menu
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        menuRef.current &&
+        !menuRef.current.contains(event.target as Node) &&
+        isMenuListOpen // Only close the MenuList if it's open
+      ) {
+        toggleMenuOpen(); // Close the menu
+        setMenuListOpen(false); // Close the MenuList
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isMenuListOpen, toggleMenuOpen]);
   return (
     <Menu isOpen={directoryState.isOpen}>
       {({ isOpen }) => (
@@ -30,7 +56,9 @@ const Directory: React.FC = () => {
             _hover={{ outline: "1px solid", outlineColor: "gray.200" }}
             mr={2}
             ml={{ base: 0, md: 2 }}
-            onClick={toggleMenuOpen}
+            onClick={() => {
+              toggleMenuList(); // Toggle the MenuList
+            }}
           >
             <Flex
               alignItems="center"
@@ -68,9 +96,16 @@ const Directory: React.FC = () => {
               <ChevronDownIcon color="gray.500" />
             </Flex>
           </MenuButton>
-          <MenuList maxHeight="300px" overflow="scroll" overflowX="hidden">
-            <Communities menuOpen={isOpen} />
-          </MenuList>
+          {isMenuListOpen && (
+            <MenuList
+              maxHeight="300px"
+              overflow="scroll"
+              overflowX="hidden"
+              ref={menuRef}
+            >
+              <Communities menuOpen={isOpen} />
+            </MenuList>
+          )}
         </>
       )}
     </Menu>

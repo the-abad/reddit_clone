@@ -20,17 +20,20 @@ import useCommunityData from "../../hooks/useCommunityData";
 type RecommendationsProps = {};
 
 const Recommendations: React.FC<RecommendationsProps> = () => {
+  const handleCommunity = () => {
+    getCommunityRecommendations(100)
+  }
   const [communities, setCommunities] = useState<Community[]>([]);
   const [loading, setLoading] = useState(false);
   const { communityStateValue, onJoinLeaveCommunity } = useCommunityData();
 
-  const getCommunityRecommendations = async () => {
+  const getCommunityRecommendations = async (props) => {
     setLoading(true);
     try {
       const communityQuery = query(
         collection(firestore, "communities"),
         orderBy("numberOfMembers", "desc"),
-        limit(5)
+        limit(props)
       );
       const communityDocs = await getDocs(communityQuery);
       const communities = communityDocs.docs.map((doc) => ({
@@ -47,7 +50,7 @@ const Recommendations: React.FC<RecommendationsProps> = () => {
   };
 
   useEffect(() => {
-    getCommunityRecommendations();
+    getCommunityRecommendations(5);
   }, []);
 
   return (
@@ -154,7 +157,7 @@ const Recommendations: React.FC<RecommendationsProps> = () => {
               );
             })}
             <Box p="10px 20px">
-              <Button height="30px" width="100%">
+              <Button height="30px" width="100%" onClick={handleCommunity}>
                 View All
               </Button>
             </Box>

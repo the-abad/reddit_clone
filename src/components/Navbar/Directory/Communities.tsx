@@ -8,6 +8,7 @@ import { communityState } from "../../../atoms/communitiesAtom";
 import { auth } from "../../../firebase/clientApp";
 import CreateCommunityModal from "../../Modal/CreateCommunity";
 import MenuListItem from "./MenuListItem";
+import Link from "next/link";
 
 type CommunitiesProps = {
   menuOpen: boolean;

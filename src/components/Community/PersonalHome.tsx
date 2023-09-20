@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, Flex, Icon, Stack, Text } from "@chakra-ui/react";
 import { TiHome } from "react-icons/ti";
+import Link from "next/link";
 
 const PersonalHome: React.FC = () => {
   return (
@@ -33,9 +34,16 @@ const PersonalHome: React.FC = () => {
           <Text fontSize="9pt">
             Your personal Reddit frontpage, built for you.
           </Text>
-          <Button height="30px">Create Post</Button>
+          <Button height="30px">
+          <Link href={'/blank'}>
+
+            Create Post
+            </Link>
+            </Button>
           <Button variant="outline" height="30px">
+          <Link href={'/blank'}>
             Create Community
+          </Link>
           </Button>
         </Stack>
       </Flex>

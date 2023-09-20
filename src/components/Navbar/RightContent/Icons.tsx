@@ -9,6 +9,7 @@ import {
   IoVideocamOutline,
 } from "react-icons/io5";
 import useDirectory from "../../../hooks/useDirectory";
+import Link from "next/link";
 
 type ActionIconsProps = {};
 
@@ -30,7 +31,9 @@ const ActionIcons: React.FC<ActionIconsProps> = () => {
           borderRadius={4}
           _hover={{ bg: "gray.200" }}
         >
-          <Icon as={BsArrowUpRightCircle} fontSize={20} />
+          <Link href="/blank">
+            <Icon as={BsArrowUpRightCircle} fontSize={20} />
+          </Link>
         </Flex>
         <Flex
           mr={1.5}
@@ -40,7 +43,9 @@ const ActionIcons: React.FC<ActionIconsProps> = () => {
           borderRadius={4}
           _hover={{ bg: "gray.200" }}
         >
-          <Icon as={IoFilterCircleOutline} fontSize={22} />
+          <Link href="/blank">
+            <Icon as={IoFilterCircleOutline} fontSize={22} />
+          </Link>
         </Flex>
         <Flex
           mr={1.5}
@@ -50,7 +55,9 @@ const ActionIcons: React.FC<ActionIconsProps> = () => {
           borderRadius={4}
           _hover={{ bg: "gray.200" }}
         >
-          <Icon as={IoVideocamOutline} fontSize={22} />
+          <Link href="/blank">
+            <Icon as={IoVideocamOutline} fontSize={22} />
+          </Link>
         </Flex>
       </Box>
       <>
@@ -62,7 +69,9 @@ const ActionIcons: React.FC<ActionIconsProps> = () => {
           borderRadius={4}
           _hover={{ bg: "gray.200" }}
         >
-          <Icon as={BsChatDots} fontSize={20} />
+          <Link href="/blank">
+            <Icon as={BsChatDots} fontSize={20} />
+          </Link>
         </Flex>
         <Flex
           mr={1.5}
@@ -72,7 +81,9 @@ const ActionIcons: React.FC<ActionIconsProps> = () => {
           borderRadius={4}
           _hover={{ bg: "gray.200" }}
         >
-          <Icon as={IoNotificationsOutline} fontSize={20} />
+          <Link href="/blank">
+            <Icon as={IoNotificationsOutline} fontSize={20} />
+          </Link>
         </Flex>
         <Flex
           display={{ base: "none", md: "flex" }}
@@ -82,9 +93,12 @@ const ActionIcons: React.FC<ActionIconsProps> = () => {
           cursor="pointer"
           borderRadius={4}
           _hover={{ bg: "gray.200" }}
-          onClick={toggleMenuOpen}
+          // onClick={toggleMenuOpen}
         >
-          <Icon as={GrAdd} fontSize={20} />
+          {" "}
+          <Link href="/blank">
+            <Icon as={GrAdd} fontSize={20} />
+          </Link>
         </Flex>
       </>
     </Flex>

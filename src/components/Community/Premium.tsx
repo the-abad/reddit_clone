@@ -1,6 +1,7 @@
 import React from "react";
 import { Flex, Icon, Text, Stack, Button } from "@chakra-ui/react";
 import { GiCheckedShield } from "react-icons/gi";
+import Link from "next/link";
 
 const Premium: React.FC = () => {
   return (
@@ -21,7 +22,9 @@ const Premium: React.FC = () => {
         </Stack>
       </Flex>
       <Button height="30px" bg="brand.100">
+        <Link href={'https://www.reddit.com/premium'}>
         Try Now
+        </Link>
       </Button>
     </Flex>
   );
