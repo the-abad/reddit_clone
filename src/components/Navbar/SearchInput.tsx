@@ -75,7 +75,7 @@ const SearchInput: React.FC<SearchInputProps> = ({ user }) => {
     };
   }, []);
 
-  const handleInputClick = (e) => {
+  const handleInputClick = (e: { stopPropagation: () => void; }) => {
     // Prevent the click on the input from closing the dropdown
     e.stopPropagation();
   };
