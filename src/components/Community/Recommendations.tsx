@@ -27,7 +27,7 @@ const Recommendations: React.FC<RecommendationsProps> = () => {
   const [loading, setLoading] = useState(false);
   const { communityStateValue, onJoinLeaveCommunity } = useCommunityData();
 
-  const getCommunityRecommendations = async (props) => {
+  const getCommunityRecommendations = async (props: number) => {
     setLoading(true);
     try {
       const communityQuery = query(
