@@ -28,23 +28,23 @@ const Directory: React.FC = () => {
     setMenuListOpen(!isMenuListOpen);
   };
   // Add an event listener to the document body to handle clicks outside of the menu
-  // useEffect(() => {
-  //   const handleClickOutside = (event: MouseEvent) => {
-  //     if (
-  //       menuRef.current &&
-  //       !menuRef.current.contains(event.target as Node) &&
-  //       isMenuListOpen // Only close the MenuList if it's open
-  //     ) {
-  //       toggleMenuOpen(); // Close the menu
-  //       setMenuListOpen(false); // Close the MenuList
-  //     }
-  //   };
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        menuRef.current &&
+        !menuRef.current.contains(event.target as Node) &&
+        isMenuListOpen // Only close the MenuList if it's open
+      ) {
+        toggleMenuOpen(); // Close the menu
+        // setMenuListOpen(false); // Close the MenuList
+      }
+    };
 
-  //   document.addEventListener("mousedown", handleClickOutside);
-  //   return () => {
-  //     document.removeEventListener("mousedown", handleClickOutside);
-  //   };
-  // }, [isMenuListOpen, toggleMenuOpen]);
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isMenuListOpen, toggleMenuOpen]);
   return (
     <Menu isOpen={directoryState.isOpen}>
       {({ isOpen }) => (
